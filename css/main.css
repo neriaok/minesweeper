@@ -1,0 +1,62 @@
+body {
+    text-align: center;
+    background-color: blue;
+    color: brown;
+}
+
+.cell {
+    
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+.cell img {
+    width: 25px;
+    height: auto;
+}
+
+.floor {
+    background-color: gray;
+}
+
+.wall {
+    background-color: brown;
+}
+table {
+    border: 1px solid rgb(202, 33, 33);
+    margin: 50px auto;
+    
+}
+
+/* .board td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.5s;
+    cursor: pointer;
+    text-align: center;
+    color: red;
+
+} */
+
+/* h1 {
+    text-align: center;
+} */
+
+.timer-container{
+  text-align: center;
+  color: black;
+  border:10px solid;
+  width: 200px;
+  margin: auto;
+  height: auto;
+
+}
+
+.game-level{
+    text-align: center;
+    color: orange;
+}
