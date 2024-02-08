@@ -16,8 +16,9 @@ body {
     height: auto;
 }
 
-.floor {
-    background-color: gray;
+.board{
+    border: 10px solid red;
+    background-color:gray;
 }
 
 .wall {

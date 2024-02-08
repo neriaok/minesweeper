@@ -28,8 +28,7 @@ function getRandomInt(min, max) {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min) + min)
 }
-// var count = countFoodAround(gBoard, 0, 0)
-// console.log('Found', count, ' food around me')
+
 // function countFoodAround(board, rowIdx, colIdx) {
 // var foodCount = 0
 // for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {

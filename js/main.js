@@ -1,15 +1,9 @@
 'use strict'
 
-const WALL = 'WALL'
-const FLOOR = 'FLOOR'
-
+const MINE = '💣'
 // Model:
-var gBoard = {
-    minesAroundCount: 4,
-     isShown: false,
-      isMine: false, 
-      isMarked: true }
 
+var gBoard 
 var gLevel = { SIZE: 4, MINES: 2 }
 var gGame = { isOn: false, shownCount: 0, markedCount: 0, secsPassed: 0 }
 
@@ -20,72 +14,96 @@ var gTimerInterval
 
 function onInitGame() {
     gBoard = buildBoard()
-    resetNums()
+    
     renderBoard(gBoard)
     gNextNum = 1
-
+resetNums()
 }
 
 function buildBoard() {
-    // DONE: Create the Matrix 10 * 12 
-    // DONE: Put FLOOR everywhere and WALL at edges
- 
-    const board = []
-    const rowsCount = 10
-    const colsCount = 10
-    for (var i = 0; i < rowsCount; i++) {
-        board.push([])
-        for (var j = 0; j < colsCount; j++) {
-            board[i][j] = { type: FLOOR, gameElement: null }
-            if (i === 0 || i === rowsCount - 1 ||
-                j === 0 || j === colsCount - 1) {
-                board[i][j].type = WALL
-            }
-        }
-    }
 
+
+    const size = gLevel.SIZE
+    const board = []
+
+    for (var i = 0; i < size; i++) {
+        board.push([])
+
+        for (var j = 0; j < size; j++) {
+            var cell =  {
+                minesAroundCount: 0, //setMinesNegsCount(),
+                isShown: false,
+                isMine: false,
+                isMarked: true
+            }
+            board[i][j] = cell
+            
+            // board[i][j] = setMinesNegsCount(board, i, j)
+        }
+
+    }
+    board[1][1] = MINE
+    board[1][board.length - 2] = MINE
+    board[board.length - 2][1] = MINE
+    board[board.length - 2][board.length - 2] = MINE
     return board
+
 }
 
-function setMinesNegsCount(board){
+function setMinesNegsCount(board, rowIdx, colIdx) {
+    var minesAroundCount = 0
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i < 0 || i >= board.length) continue
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (i === rowIdx && j === colIdx) continue
+            if (j < 0 || j >= board[i].length) continue
+            var currCell = board[i][j]
+            if (currCell === MINE) minesAroundCount++
+        }
+        console.log(minesAroundCount);
+    }
+    return minesAroundCount
 
 }
 
 function renderBoard(board) {
-
-    const elBoard = document.querySelector('.board')
     var strHTML = ''
     for (var i = 0; i < board.length; i++) {
-        strHTML += '<tr>\n'
+        strHTML += '<tr class="board-row">'
         for (var j = 0; j < board[0].length; j++) {
-            const currCell = board[i][j]
-            var cellClass = getClassName({ i, j })
-            // console.log('cellClass:', cellClass)
-
-            if (currCell.type === FLOOR) cellClass += ' floor'
-            else if (currCell.type === WALL) cellClass += ' wall'
-
-            strHTML += `\t<td class="cell ${cellClass}" onclick="moveTo(${i},${j})" >\n`
+            const cell = board[i][j]
+            const className ='cell'
+            const title = `place: ${i}, ${j}`
+            strHTML += `\t<td data-i="${i}" data-j="${j}" title="${title}" class="cell ${className}" 
+                            onclick="onCellClicked(this, ${i}, ${j})" >
+                         </td>\n`
         }
+        strHTML += '</tr>'
     }
-    // console.log(strHTML)
-    elBoard.innerHTML = strHTML
+    const elContainer = document.querySelector('.board')
+    elContainer.innerHTML = strHTML
 }
 
-function onCellClicked(elCell, num) {
-    if (num === gNextNum) {
-        if (num === 1) startTimer()
-        gNextNum++
-        elCell.style.backgroundColor = 'lightblue'
-        if (gNextNum > gLevel ** 2) clearInterval(gTimerInterval)
-    }
+function onCellClicked(elCell, i , j) {
+    elCell = document.querySelector('.cell')
+    // cell = gBoard[i][j]
+    elCell.innerText = '?'
+    // drawNumOnBoard({ i, j })
+
+
+    // if (num === gNextNum) { 
+    //     if (num === 1) startTimer()
+    //     gNextNum++
+    //     elCell.style.backgroundColor = 'lightblue'
+    //     if (gNextNum > gLevel ** 2) clearInterval(gTimerInterval)
+    // }
 }
 
- function onCellMarked(elCell) {
+function onCellMarked(elCell) {
 
- }
+}
 
-function checkGameOver(){
+function checkGameOver() {
 
 }
 
@@ -94,10 +112,10 @@ function expandShown(board, elCell, i, j) {
 }
 
 function onHandleKey(event) {
-  //WHAT HAPPEND WHEN MOVE/CLICK MOUSE
+    //WHAT HAPPEND WHEN MOVE/CLICK MOUSE
 }
-function onSetLevel(level) {
-    gLevel = level
+function onSetLevel(size) {
+    gLevel.SIZE = size
     onInitGame()
 }
 
@@ -111,7 +129,7 @@ function startTimer() {
         const seconds = getFormatSeconds(timeDiff)
         const milliSeconds = getFormatMilliSeconds(timeDiff)
 
-        document.querySelector('span.seconds').innerText =  seconds
+        document.querySelector('span.seconds').innerText = seconds
         document.querySelector('span.milli-seconds').innerText = milliSeconds
 
     }, 10)
@@ -127,11 +145,13 @@ function getFormatMilliSeconds(timeDiff) {
     return (milliSeconds + '').padStart(3, '0')
 }
 
-function drawNum() {
-    var randIdx = getRandomInt(0, gNums.length)
-    var num = gNums[randIdx]
-    gNums.splice(randIdx, 1)
-    return num
+function drawNum(pos) {
+    console.log(setMinesNegsCount(gBoard, pos.i , pos.j))
+
+    // var randIdx = getRandomInt(0, gNums.length)
+    // var num = gNums[randIdx]
+    // gNums.splice(randIdx, 1)
+    // return num
 }
 
 function resetNums() {
