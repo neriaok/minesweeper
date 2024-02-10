@@ -9,28 +9,26 @@ body {
     width: 30px;
     height: 30px;
     text-align: center;
+    outline:none;
 }
 
-.cell img {
-    width: 25px;
-    height: auto;
-}
+
 
 .board{
     border: 10px solid red;
     background-color:gray;
+
 }
 
-.wall {
-    background-color: brown;
-}
+
+
 table {
     border: 1px solid rgb(202, 33, 33);
     margin: 50px auto;
     
 }
 
-/* .board td {
+ .board td {
     width: 30px;
     height: 30px;
     border: 1px solid black;
@@ -39,9 +37,9 @@ table {
     transition: background-color 0.5s;
     cursor: pointer;
     text-align: center;
-    color: red;
+    color: gray;
 
-} */
+} 
 
 /* h1 {
     text-align: center;
