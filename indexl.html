@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINESWEEPER</title>
+    <link rel="stylesheet" href="css/updateMS.CSS">
+</head>
+
+<body onload="onInit()">
+    <h1 class="title">MINESWEEPER</h1>
+    <h1></h1>
+    
+        <button class="levelbtn" onclick="chooseLevel(4 , 4)">1</button>
+        <button class="levelbtn" onclick="chooseLevel(8 , 8)">2</button>
+        <button class="levelbtn" onclick="chooseLevel(12 , 12)">3</button>
+
+    <h1 class="timer">00:00</h1>
+    <h1></h1>
+    <button class="smiley" onclick="onInit()">😁</button>
+    <h1 class="lives"><span>3</span></h1>
+    <table>
+        <tbody class="board"></tbody>
+    </table>
+    <script src="js/updatemMS.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+<h3 class="signature">made by NeriaOkabi</h3>
+</html>

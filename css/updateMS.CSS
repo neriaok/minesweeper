@@ -1,0 +1,88 @@
+body {
+    text-align: center;
+    color: gold;
+    background-color: rgb(160, 201, 236);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 50px;
+    background-image: url(/img/sea.jpg);
+    background-position:center ;
+    background-size: cover;
+}
+
+.title {
+    margin: auto;
+    text-align: center;
+    width: 300px;;
+    border-style: none;
+    font-weight:bolder;
+
+
+}
+
+table {
+    box-shadow: inset;
+    border: 1px solid blue;
+    margin: 50px auto;
+
+}
+
+.board td {
+    width: 30px;
+    height: 30px;
+    border: 1px outset black;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+    font-weight:bolder;
+    font-family:'Courier New', Courier, monospace
+    
+
+}
+
+.smiley{
+    height: 35px;
+    background-color: orange;
+    border-style: outset;
+    border-radius: 50px;
+}
+.levelbtn {
+    background-color: royalblue;
+    border-style: outset;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight:bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.timer{
+    margin: auto;
+    border-style: none;
+    color: gold;
+    width: 100px;
+    font-weight:bolder;
+
+}
+.lives{
+    color:gold;
+    margin: auto;
+    width: 250px;
+    border: none;
+}
+
+.mark{
+    background-color: lightblue;
+}
+.mine{
+    background-color: red;
+}
+/* #cell-0-0 {
+    background-color: red;
+}  */
+.signature{
+    text-align: left;
+    font-weight:bolder;
+
+}
