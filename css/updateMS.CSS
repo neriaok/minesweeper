@@ -4,7 +4,7 @@ body {
     background-color: rgb(160, 201, 236);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 50px;
-    background-image: url(/img/sea.jpg);
+    background-image: url('/img/sea.jpg');
     background-position:center ;
     background-size: cover;
 }
